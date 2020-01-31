@@ -9,7 +9,7 @@ const NavBar = props => {
 
         <div style={{height: '10%'}}>
     {/* <Layout fixedHeader> */}
-        <Header className="header" title={ <span><SvgLogo className='logo'/></span>}>
+        <Header className="header">
             <Navigation>
                 <Link to="/">Home</Link>
                 <Link to="/">About</Link>
