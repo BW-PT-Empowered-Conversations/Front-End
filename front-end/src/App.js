@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Formik, Form, Field } from 'formik';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function SignupForm() {
+    return (
+        <Formik 
+            initialValues={{ username: '', password: '', firstName: '', lastName: '', phone: '', email: ''}}   
+            onSubmit={(values, tools) => {
+                tools.resetForm();
+            }} 
+            
+            render={props => {
+                console.log(props);
+                return (
+                  <Form>
+                    <div>
+                      <h1>Sign Up!</h1>
+                    </div>
+
+                    <Field name='username' type='text' placeholder='username' />
+                    <Field name='password' type='text' placeholder='password' />
+                    <Field name='firstName' type='text' placeholder='First Name' />
+                    <Field name='lastName' type='text' placeholder='Last Name' />
+                    <Field name='phone' type='number' placeholder='phone' />
+                    <Field name='email' type='email' placeholder='email' />
+
+                    <input type='submit' />
+                  </Form>
+                )
+            }}
+        />
+    );
 }
-
-export default App;
