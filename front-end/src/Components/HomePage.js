@@ -64,8 +64,6 @@ export default function WelcomePage() {
         </Link>
       </BtnDiv>
 
-    <Button>Sign Up</Button>
-
     </HomePage>
   );
 }
