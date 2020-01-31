@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
 
-const WelcomeSection = styled.section`
+const HomePage = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,7 +49,7 @@ export default function WelcomePage() {
   return (
     <WelcomeSection>
       <header>
-        <h1>Welcome to the ultimate fan site!</h1>
+        <h1>Empowered Conversation </h1>
         <ImgDiv>
           <img
             className="main-img"
@@ -59,10 +59,10 @@ export default function WelcomePage() {
         </ImgDiv>
       </header>
       <BtnDiv>
-        <Link to='/characters/'>
-          <Button>See Characters</Button>
+    
+          <Button>Start Here </Button>
         </Link>
       </BtnDiv>
-    </WelcomeSection>
+    </HomePage>
   );
 }
