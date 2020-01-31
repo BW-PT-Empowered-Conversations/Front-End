@@ -1,23 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react';
-import { withFormik, Form, Field } from 'formik';
+import { Formik, Form, Field } from 'formik';
 
-export default function SignUp() {
+export default function SignupForm() {
     return (
         <Formik 
             initialValues={{ username: '', password: '', firstName: '', lastName: '', phone: '', email: ''}}   
-            onSubmit={(...things) => {
-                console.log(things);
+            onSubmit={(values, tools) => {
+                tools.resetForm();
             }} 
             render={props => {
+                console.log(props);
                 return (
                   <Form>
-                    <Field username='username' type='text' placeholder='username' />
-                    <Field password='password' type='text' placeholder='password' />
-                    <Field fname='firstName' type='text' placeholder='First Name' />
-                    <Field lname='lastName' type='text' placeholder='Last Name' />
-                    <Field phone='phone' type='text' placeholder='phone' />
-                    <Field email='email' type='text' placeholder='email' />
+                    <Field name='username' type='text' placeholder='username' />
+                    <Field name='password' type='text' placeholder='password' />
+                    <Field name='firstName' type='text' placeholder='First Name' />
+                    <Field name='lastName' type='text' placeholder='Last Name' />
+                    <Field name='phone' type='number' placeholder='phone' />
+                    <Field name='email' type='email' placeholder='email' />
 
                     <input type='submit' />
                   </Form>
