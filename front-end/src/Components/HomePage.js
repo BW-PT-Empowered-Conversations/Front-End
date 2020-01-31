@@ -60,9 +60,12 @@ export default function WelcomePage() {
       </header>
       <BtnDiv>
     
-          <Button>Start Here </Button>
+          <Button>Login</Button>
         </Link>
       </BtnDiv>
+
+    <Button>Sign Up</Button>
+
     </HomePage>
   );
 }
