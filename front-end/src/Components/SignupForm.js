@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import axios from 'axios';
 
-
-const validate = ({ username, password, firstName, lastName, phone, email }) => {
+const validate = ({ username, password, email, user_phone, first_name, last_name }) => {
   const errors = {};
+
   if (!username) {
     errors.username = 'Username required.'
   } else if (username.length < 3) {
@@ -16,39 +17,55 @@ const validate = ({ username, password, firstName, lastName, phone, email }) => 
     errors.password = 'Password minimum 6 characters.'
   }
 
-  if (!firstName) {
-    errors.firstName = 'First name required.'
-  } else if (firstName.length < 2) {
-    errors.firstName = 'First name minimum 2 characters.'
-  }
-
-  if (!lastName) {
-    errors.lastName = 'Last name required.'
-  } else if (lastName.length < 2) {
-    errors.lastName = 'Last name minimum 2 characters.'
-  }
-
-  if (!phone) {
-    errors.phone = 'Mobile phone number required.'
-  } else if (phone.length < 10) {
-    errors.phone = 'Mobile number requires 10 characters.'
-  }
-
   if (!email) {
     errors.email = 'Email address required.'
   } else if (email.length < 8) {
     errors.email = 'Email must be formatted as abc@provider.com.'
   }
+
+  if (!user_phone) {
+    errors.user_phone = 'Mobile phone number required.'
+  } else if (user_phone.length < 10) {
+    errors.user_phone = 'Mobile number requires 10 digits.'
+  }
+
+  if (!first_name) {
+    errors.first_name = 'First name required.'
+  } else if (first_name.length < 2) {
+    errors.first_name = 'First name minimum 2 characters.'
+  }
+
+  if (!last_name) {
+    errors.last_name = 'Last name required.'
+  } else if (last_name.length < 2) {
+    errors.last_name = 'Last name minimum 2 characters.'
+  }
   return errors;
 }
+
 export default function SignupForm() {
+
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = (values, tools) => {
+    axios.post('https://bw-emp.herokuapp.com/api/register', values)
+      .then(response => {
+        setMessage(response.data.message);
+        tools.resetForm();
+      })
+      .catch()
+      .finally(() => {
+        tools.setSubmitting(false);
+      })
+  }
     return (
+      <div className='App'>
+        <div>{message}</div>
+      
         <Formik 
-           onSubmit={(values, tools) => {
-                tools.resetForm();
-            }} 
+            onSubmit={handleSubmit} 
             validate={validate}
-            initialValues={{ username: '', password: '', firstName: '', lastName: '', phone: '', email: ''}}
+            initialValues={{ username: '', password: '', first_name: '', last_name: '', user_phone: '', email: ''}}
             render={props => {
                 console.log(props);
                 return (
@@ -63,23 +80,28 @@ export default function SignupForm() {
                     <Field name='password' type='text' placeholder='password' />
                     <ErrorMessage name='password' component='div' className='red' />
 
-                    <Field name='firstName' type='text' placeholder='First Name' />
-                    <ErrorMessage name='firstName' component='div' className='red' />
-
-                    <Field name='lastName' type='text' placeholder='Last Name' />
-                    <ErrorMessage name='lastName' component='div' className='red' />
-
-                    <Field name='phone' type='number' placeholder='phone' />
-                    <ErrorMessage name='phone' component='div' className='red' />
-
                     <Field name='email' type='email' placeholder='email' />
                     <ErrorMessage name='email' component='div' className='red' />
 
+                    <Field name='user_phone' type='number' placeholder='Phone' />
+                    <ErrorMessage name='user_phone' component='div' className='red' />
 
-                    <input type='submit' />
+                    <Field name='first_name' type='text' placeholder='First Name' />
+                    <ErrorMessage name='first_name' component='div' className='red' />
+
+                    <Field name='last_name' type='text' placeholder='Last Name' />
+                    <ErrorMessage name='last_name' component='div' className='red' />                  
+
+
+                    <button type='submit' disabled={props.isSubmitting}>
+                      {
+                        props.isSubmitting ? '...SUBMITTING' : 'Submit'
+                      } 
+                    </button>
                   </Form>
                 )
             }}
         />
+      </div>
     );
 }
