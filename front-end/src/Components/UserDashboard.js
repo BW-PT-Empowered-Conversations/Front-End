@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ConversationStarter() {
+export default function UserDashboard() {
   return (
       <div>
         <h1>Welcome</h1>
