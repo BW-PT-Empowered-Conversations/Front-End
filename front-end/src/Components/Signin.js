@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Button } from "reactstrap";
+import { connect } from "react-redux"
 
 const DivStyle = styled.div`
   margin: 10px auto;
@@ -107,8 +108,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  signin,
-  getUser
+  //signin,
+  //getUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -7,7 +7,7 @@ let styleCounter = {
   alignItems: "center"
 };
 
-export default function empowered-convosation() {
+export default function empoweredConversation() {
   // useEffect(() => {
   //   axios
   //     .get(`?`)
@@ -18,7 +18,7 @@ export default function empowered-convosation() {
   return (
     <div style={styleCounter}>
       <div style={{ border: "1px solid black" }}>
-        <h2>empowered-convosation</h2>
+        <h2>empowered-conversation</h2>
         <Button color="primary" outline>
           Notifications <Badge color="secondary">StateHere</Badge>
         </Button>

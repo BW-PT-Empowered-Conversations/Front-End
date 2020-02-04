@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Button } from "reactstrap";
+import { connect } from "react-redux"
 
 const buttonStyle = {
   color: "white",
@@ -91,9 +92,9 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  signup,
-  signin,
-  getUser
+  // signup,
+  // signin,
+  // getUser
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registration);

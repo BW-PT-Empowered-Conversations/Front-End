@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import Signin from "../components/Signin";
-import Signup from "../components/Signup";
+import Signin from "./Signin";
+import Signup from "./Signup";
 import empowered from "./Counter";
+import { connect } from "react-redux";
 
 function HomePage(props) {
-    
-}
 
  return (
     <div>
@@ -41,7 +40,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  setLoggedIn
+//  setLoggedIn
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
