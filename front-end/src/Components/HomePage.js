@@ -1,69 +1,66 @@
-import React from "react";
-import {Link} from 'react-router-dom';
-import styled from 'styled-components';
+import React, { useEffect } from "react";
+import styled from "styled-components";
+import Signin from "../components/Signin";
+import Signup from "../components/Signup";
 
 
-const HomePage = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  h1 {
-    color: #black;
-    font-size: 3rem;
-   
-  }
-`;
+function HomePage(props) {
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      props.setLoggedIn();
+      localStorage.setItem("userInfo", props.userInfo.username);
+      localStorage.setItem("id", props.userInfo.id);
+    }
+  }, []);
 
-
-const Button = styled.button`
-  border: 2px solid #8ED043;
-  border-radius: 5px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  width: 100%;
-  text-align: center;
-  background: #1C1C36;
-  color: #8ED043;
-  font-size: 1.2rem;
-  margin-top: 10%;
-  &:hover {
-    cursor: pointer;
-    background: white;
-    border: 2px solid #8ED043;
-    color: #1C1C36;
-  }
-`;
-
-const ImgDiv = styled.div`
-  text-align: center;
-`;
-
-const BtnDiv = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export default function WelcomePage() {
   return (
-    <WelcomeSection>
-      <header>
-        <h1>Empowered Conversation </h1>
-        <ImgDiv>
-          <img
-            className="main-img"
-            src="https://source.unsplash.com/random"
-            alt="Home "
-          />
-        </ImgDiv>
-      </header>
-      <BtnDiv>
-    
-          <Button>Login</Button>
-        </Link>
-      </BtnDiv>
-
-    </HomePage>
+    <div>
+      {props.isLoggedIn ? (
+        // <Dashboard />
+        <div className="dashboard">
+          <h1>HOME</h1>
+          <BucketAdd />
+          <BucketLists />
+        </div>
+      ) : (
+        <div className="signin-signup">
+          <StyledHeader>
+            Begin your chat today!
+          </StyledHeader>
+          <StyledP>Returning user?</StyledP>
+          <Signin />
+          <StyledP>Get started!</StyledP>
+          <Signup />
+        </div>
+      )}
+    </div>
   );
 }
+
+function mapStateToProps(state) {
+  return {
+    ...state,
+    isLoggedIn: state.isLoggedIn,
+    userInfo: { ...state.userInfo }
+  };
+}
+
+const mapDispatchToProps = {
+  setLoggedIn
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+
+const StyledP = styled.p`
+  color: red;
+  font-size: 1.5rem;
+`;
+
+const StyledHeader = styled.h2`
+  color: red;
+  font-size: 2.5rem;
+  border-bottom: 1px solid red;
+  border-top: 1px solid red;
+  padding: 20px;
+  margin-top: -10px;
+`;
