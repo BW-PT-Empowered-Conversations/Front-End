@@ -53,7 +53,9 @@ export default function SignupForm() {
         setMessage(response.data.message);
         tools.resetForm();
       })
-      .catch()
+      .catch(err => {
+        console.log(err); 
+      })
       .finally(() => {
         tools.setSubmitting(false);
       })
@@ -65,7 +67,7 @@ export default function SignupForm() {
         <Formik 
             onSubmit={handleSubmit} 
             validate={validate}
-            initialValues={{ username: '', password: '', first_name: '', last_name: '', user_phone: '', email: ''}}
+            initialValues={{ username: '', password: '', first_name: '', last_name: '', user_phone: '', email: '', tos: ''}}
             render={props => {
                 console.log(props);
                 return (
@@ -77,7 +79,7 @@ export default function SignupForm() {
                     <Field name='username' type='text' placeholder='username' />
                     <ErrorMessage name='username' component='div' className='red' />
 
-                    <Field name='password' type='text' placeholder='password' />
+                    <Field name='password' type='password' placeholder='password' />
                     <ErrorMessage name='password' component='div' className='red' />
 
                     <Field name='email' type='email' placeholder='email' />
@@ -92,7 +94,11 @@ export default function SignupForm() {
                     <Field name='last_name' type='text' placeholder='Last Name' />
                     <ErrorMessage name='last_name' component='div' className='red' />                  
 
-
+                    <label>
+                    <Field name='tos' type='checkbox' checked={props.checked} />
+                      Accept TOS
+                    </label>
+             
                     <button type='submit' disabled={props.isSubmitting}>
                       {
                         props.isSubmitting ? '...SUBMITTING' : 'Submit'
@@ -105,3 +111,4 @@ export default function SignupForm() {
       </div>
     );
 }
+
