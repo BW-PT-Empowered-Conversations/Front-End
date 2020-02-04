@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import Signin from "../components/Signin";
 import Signup from "../components/Signup";
+import empowered from "./Counter";
 
 
 function HomePage(props) {
@@ -19,8 +20,8 @@ function HomePage(props) {
         // <Dashboard />
         <div className="dashboard">
           <h1>HOME</h1>
-          <BucketAdd />
-          <BucketLists />
+          <empowered-conversation />
+          <empowered-conversation />
         </div>
       ) : (
         <div className="signin-signup">
