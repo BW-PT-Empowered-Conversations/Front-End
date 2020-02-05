@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import axios from 'axios';
+import Popup from 'reactjs-popup';
 
-const validate = ({ username, password, email, user_phone, first_name, last_name }) => {
+const validate = ({ username, password, email, user_phone, first_name, last_name, checkbox }) => {
   const errors = {};
 
   if (!username) {
@@ -40,6 +41,11 @@ const validate = ({ username, password, email, user_phone, first_name, last_name
   } else if (last_name.length < 2) {
     errors.last_name = 'Last name minimum 2 characters.'
   }
+
+  if (!checkbox) {
+    errors.checkbox = 'Acceptance required. Must be checked to submit.'
+  }
+
   return errors;
 }
 
@@ -67,7 +73,7 @@ export default function SignupForm() {
         <Formik 
             onSubmit={handleSubmit} 
             validate={validate}
-            initialValues={{ username: '', password: '', first_name: '', last_name: '', user_phone: '', email: '', tos: ''}}
+            initialValues={{ username: '', password: '', first_name: '', last_name: '', user_phone: '', email: '', checkbox: '' }}
             render={props => {
                 console.log(props);
                 return (
@@ -85,7 +91,7 @@ export default function SignupForm() {
                     <Field name='email' type='email' placeholder='email' />
                     <ErrorMessage name='email' component='div' className='red' />
 
-                    <Field name='user_phone' type='number' placeholder='Phone' />
+                    <Field name='user_phone' type='tel' placeholder='Phone' />
                     <ErrorMessage name='user_phone' component='div' className='red' />
 
                     <Field name='first_name' type='text' placeholder='First Name' />
@@ -95,11 +101,29 @@ export default function SignupForm() {
                     <ErrorMessage name='last_name' component='div' className='red' />                  
 
                     <label>
-                    <Field name='tos' type='checkbox' checked={props.checked} />
-                      Accept TOS
+                    <Field name='checkbox' type='checkbox' checked={props.checked} />
+                    <ErrorMessage name='checkbox' component='div' className='red' />
+                    <Popup    //modal
+                        trigger={<button className="TOS"> Accept Terms of Service </button>}
+                        position='bottom right'
+                        closeOnDocumentClick
+                    >
+                        <span> CONDITIONS OF USE
+                          Welcome to our website/app. Empowered Conversation and its associates provide
+                          their services to you subject to the following conditions. If you visit
+                          this website, you accept these conditions. Please read them carefully.
+                          ELECTRONIC COMMUNICATIONS
+                          When you visit Empowered Conversation or send e-mails to us, you are
+                          communicating with us electronically. You consent to receive communications from
+                          us electronically. We will communicate with you by e-mail or by posting notices on
+                          this site. You agree that all agreements, notices, disclosures and other
+                          communications that we provide to you electronically satisfy any legal requirement
+                          that such communications be in writing.
+                        </span>
+                    </Popup>
                     </label>
              
-                    <button type='submit' disabled={props.isSubmitting}>
+                    <button className='button' type='submit' disabled={props.isSubmitting}>
                       {
                         props.isSubmitting ? '...SUBMITTING' : 'Submit'
                       } 
@@ -111,4 +135,3 @@ export default function SignupForm() {
       </div>
     );
 }
-
