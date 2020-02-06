@@ -6,7 +6,7 @@ function Dashboard(props) {
     console.log(props);
     return (
         <div>
-            Hello from the Dashboard!
+             Hello from the Dashboard!
         </div>
     )
 }
