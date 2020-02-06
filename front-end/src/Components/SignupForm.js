@@ -67,7 +67,7 @@ export default function SignupForm() {
       })
   }
     return (
-      <div className='App'>
+      <div className='SignupForm'>
         <div>{message}</div>
       
         <Formik 
