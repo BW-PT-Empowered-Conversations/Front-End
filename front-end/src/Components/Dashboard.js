@@ -1,5 +1,7 @@
 import React from 'react';
-
+import ReactDom from 'react-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+//import "./styles.css";
 function Dashboard(props) {
     console.log(props);
     return (
@@ -9,13 +11,4 @@ function Dashboard(props) {
     )
 }
 
-function mapStateToProps(state) {
-    return {
-        ...state,
-    userInfo: {
-        ...state.userInfo
-        }
-    }
-}
-
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;

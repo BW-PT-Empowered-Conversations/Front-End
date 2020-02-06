@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { Button } from "reactstrap";
 import { connect } from "react-redux"
+import axios from 'axios';
 
 const buttonStyle = {
   color: "white",
-  background: "green",
+  background: "black",
   width: "200px",
   margin: "10px auto",
   borderRadius: "10px",
@@ -29,7 +30,7 @@ const FormDiv = styled.div`
 `;
 
 const HeaderStyle = styled.h2`
-  color: green;
+  color: black;
 `;
 
 function Registration(props) {
@@ -40,16 +41,22 @@ function Registration(props) {
 
   const registration = e => {
     e.preventDefault();
-    props.signup(form);
     props.signin(form);
     props.getUser(props.userInfo.id);
   };
 
-  const handleChanges = e => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const handleSubmit = (values, tools ) => {
+    axios.post('http://bw-emp.herokuapp.com/api/login')
+    .then (res =>{
+      //setMessage(res.data.message);
+    })
+    .catch()
+    .finally()
+
+  }
+  
   return (
-    <div textAlign="center">
+    <div textAlign="">
       <DivStyle>
         <FormDiv>
           <HeaderStyle>Sign Up</HeaderStyle>
@@ -60,7 +67,7 @@ function Registration(props) {
                 name="username"
                 type="text"
                 value={form.username}
-                onChange={handleChanges}
+                onChange={handleSubmit}
                 placeholder="UserName"
                 required
               />
@@ -70,7 +77,7 @@ function Registration(props) {
                 name="password"
                 type="password"
                 value={form.password}
-                onChange={handleChanges}
+                onChange={handleSubmit}
                 placeholder="Password"
                 required
               />
@@ -93,7 +100,6 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   // signup,
-  // signin,
   // getUser
 };
 

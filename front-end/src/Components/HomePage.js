@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import Signin from "./Signin";
+//import Signin from "./Signin";
 import Signup from "./Signup";
-import empowered from "./Counter";
+//import empowered from "./Counter";
 import { connect } from "react-redux";
 
 function HomePage(props) {
@@ -11,18 +11,17 @@ function HomePage(props) {
     <div>
       {props.isLoggedIn ? (
         // <Dashboard />
-        <div className="dashboard">
+        <div className="Dashboard">
           <h1>HOME</h1>
           <empowered-conversation />
           <empowered-conversation />
         </div>
       ) : (
-        <div className="signin-signup">
+        <div className="Signup">
           <StyledHeader>
             Start Talking Today!
           </StyledHeader>
-          <StyledP>Returning user?</StyledP>
-          <Signin />
+          <StyledP>Welcome</StyledP>
           <StyledP>Get started!</StyledP>
           <Signup />
         </div>
@@ -46,15 +45,21 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 
 const StyledP = styled.p`
-  color: green;
+  color: black;
   font-size: 1.5rem;
+  text-align: center;
 `;
 
 const StyledHeader = styled.h2`
-  color: green;
+  color: Red;
+  text-align: center;
   font-size: 2.5rem;
-  border-bottom: 1px solid green;
-  border-top: 1px solid green;
-  padding: 20px;
-  margin-top: -10px;
+  margin: 10px auto;
+  width: 450px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 4px 7px #888888;
 `;
+
+
+

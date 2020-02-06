@@ -1,18 +1,14 @@
 .App {
   text-align: center;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
 }
-
 .App-logo {
   height: 40vmin;
-  pointer-events: none;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -23,16 +19,53 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
 .App-link {
-  color: #61dafb;
+  color: #09d3ac;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.list-card {
+  margin: auto;
+  border: 1px solid black;
+  min-height: 10vh;
+  min-width: 20vw;
+  background-color: white;
+}
+.list-wrapper {
+  margin: auto;
+  border: 2px solid green;
+  max-width: 45vw;
+  min-height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: lightgoldenrodyellow;
+}
+.nav-bar {
+  margin: auto;
+  display: flex;
+  height: 6vh;
+  width: 75vw;
+  background-color: #09d3ac;
+  justify-content: space-around;
+}
+.nav-link {
+  color: white;
+  font-size: 2.2rem;
+  text-decoration: none;
+}
+.signin-signup {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 90vw;
+  justify-content: space-around;
+}
+.bucket-list-page {
+  min-height: 85vh;
+}
+.list-wrapper {
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: 15vh;
+  min-width: 90vw;
+  padding: 5vh 0vh 5vh 0vh;
 }
