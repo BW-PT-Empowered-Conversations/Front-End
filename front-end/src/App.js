@@ -10,11 +10,12 @@ import ConversationStarter from './Components/ConversationStarter'
 
 function App() {
   return (
+
     <Switch>
-      <Route exact path="/" render={props => <HomePage {...props} />} />
+      <Route exact path="/" component={HomePage} />
       <Route path="/signup" component={SignupForm} />
       <Route path="/new-conversation" component={ConversationStarter} />
-    </Switch>
+    </Switch>  
   )
 }
 
