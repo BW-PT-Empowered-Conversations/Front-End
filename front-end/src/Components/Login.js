@@ -48,7 +48,7 @@ function Login(props) {
   const login = e => {
     validateForm();
     e.preventDefault(); //method stops the default action of an element from happening. For example: Prevent a submit button from submitting a form.
-    props.signin(form);
+    props.login(form);
     setForm({
       username: "",
       password: ""
@@ -91,7 +91,7 @@ function Login(props) {
               />
             </div>
             <Button style={buttonStyle} type="submit" fluid>
-              Login
+              Log In 
             </Button>
           </form>
         </FormDiv>

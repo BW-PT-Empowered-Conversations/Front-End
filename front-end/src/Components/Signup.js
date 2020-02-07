@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Button } from "reactstrap";
 import { connect } from "react-redux"
+import history from './history';
 
 const buttonStyle = {
   color: "white",
@@ -40,7 +41,7 @@ function Registration(props) {
 
   const registration = e => {
     e.preventDefault();
-    props.signup(form);
+    props.login(form);
     props.signin(form);
     props.getUser(props.userInfo.id);
   };
@@ -54,32 +55,10 @@ function Registration(props) {
         <FormDiv>
           <HeaderStyle>Sign Up</HeaderStyle>
 
-          <form onSubmit={registration}>
-            <div className="ui fluid input">
-              <input
-                name="username"
-                type="text"
-                value={form.username}
-                onChange={handleChanges}
-                placeholder="UserName"
-                required
-              />
-            </div>
-            <div className="ui fluid input">
-              <input
-                name="password"
-                type="password"
-                value={form.password}
-                onChange={handleChanges}
-                placeholder="Password"
-                required
-              />
-            </div>
-            <Button style={buttonStyle} type="submit" fluid>
-              Sign Up
+          <Button variant="btn btn-success" onClick={() => history.push('/SignupForm.js')}>
+            Sign Up 
             </Button>
-          </form>
-        </FormDiv>
+         </FormDiv>
       </DivStyle>
     </div>
   );

@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import Signin from "./Signin";
 import Signup from "./Signup";
-import empowered from "./Counter";
 import { connect } from "react-redux";
+import Login from "./Login";
 
 function HomePage(props) {
 
@@ -17,12 +16,12 @@ function HomePage(props) {
           <empowered-conversation />
         </div>
       ) : (
-        <div className="signin-signup">
+        <div className="login-signup">
           <StyledHeader>
             Start Talking Today!
           </StyledHeader>
           <StyledP>Returning user?</StyledP>
-          <Signin />
+          <Login />
           <StyledP>Get started!</StyledP>
           <Signup />
         </div>
