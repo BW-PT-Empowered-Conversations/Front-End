@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Button } from "reactstrap";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
+import axios from "axios";
 
 const DivStyle = styled.div`
   margin: 10px auto;
@@ -34,7 +35,7 @@ const HeaderStyle = styled.h2`
 function Login(props) {
   const [form, setForm] = React.useState({
     //sets state of the form to empty fields
-    username: "", //user name is Nil 
+    username: "", //user name is Nil
     password: "" //password is Nil
   });
   const validateForm = () => {
@@ -48,12 +49,22 @@ function Login(props) {
   const login = e => {
     validateForm();
     e.preventDefault(); //method stops the default action of an element from happening. For example: Prevent a submit button from submitting a form.
-    props.login(form);
-    setForm({
-      username: "",
-      password: ""
-    });
-    props.getUser(props.userInfo.id);
+    //props.login(form);////
+
+    axios
+      .post("https://bw-emp.herokuapp.com/api/login", form)
+      .then(response => {
+        console.log(response.data);
+        localStorage.setItem("token", response.data.token);
+        setForm({
+          username: "",
+          password: ""
+        });
+      })
+      .catch()
+      .finally(() => {
+        // tools.setSubmitting(false);
+      });
   };
 
   const handleChanges = e => {
@@ -91,7 +102,7 @@ function Login(props) {
               />
             </div>
             <Button style={buttonStyle} type="submit" fluid>
-              Log In 
+              Log In
             </Button>
           </form>
         </FormDiv>

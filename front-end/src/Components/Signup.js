@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Button } from "reactstrap";
 import { connect } from "react-redux"
-import history from './history';
+import {useHistory} from 'react-router-dom';
 
 const buttonStyle = {
   color: "white",
@@ -33,7 +33,9 @@ const HeaderStyle = styled.h2`
   color: green;
 `;
 
+
 function Registration(props) {
+  const history=useHistory()
   const [form, setForm] = React.useState({
     username: "",
     password: ""
@@ -49,13 +51,26 @@ function Registration(props) {
   const handleChanges = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+  
+  // //const handleSubmit = (values, tools) => {
+  //   //axios.post('https://bw-emp.herokuapp.com/api/login', values)
+  //     .then(response => {
+  //       setMessage(response.data.message);
+  //       tools.resetForm();
+  //     })
+  //     .catch()
+  //     .finally(() => {
+  //       tools.setSubmitting(false);
+  //     })
+  // }
+
   return (
     <div textAlign="center">
       <DivStyle>
         <FormDiv>
           <HeaderStyle>Sign Up</HeaderStyle>
 
-          <Button variant="btn btn-success" onClick={() => history.push('/SignupForm.js')}>
+          <Button variant="btn btn-success" onClick={() => history.push('/signup')}>
             Sign Up 
             </Button>
          </FormDiv>
