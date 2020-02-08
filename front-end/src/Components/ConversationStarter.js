@@ -1,6 +1,6 @@
 import React from 'react'; //, { useState } 
 import { Formik, Form, Field } from 'formik'; // , ErrorMessage
-import { axiosWithAuth } from '../utils/axiosConfig';
+import axios from 'axios';
 import '../App.css';
 import styled from 'styled-components';
 
@@ -37,8 +37,9 @@ export default function ConversationStarter() {
  // const [data, setData] = useState('');
 
   const handleSubmit = (values, tools) => {
-
-    axiosWithAuth().post('https://bw-emp.herokuapp.com/api/user/1/1/message', values)
+    // hardcoded testing user/1
+    // axios.post('https://bw-emp.herokuapp.com/api/user/1/1/message', values)
+    axios.post('https://bw-emp.herokuapp.com/api/user/:user_id/:conversation_id/message', values)
     .then(response => {
       console.log(response);
       tools.resetForm();
