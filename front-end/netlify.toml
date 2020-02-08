@@ -2,3 +2,8 @@
   command = "yarn build"
   publish="front-end/build"
   base = "front-end"
+
+  [[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
