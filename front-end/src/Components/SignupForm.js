@@ -3,7 +3,9 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import axios from 'axios';
 import Popup from 'reactjs-popup';
 import '../App.css';
+import Login from './Login'
 import styled from 'styled-components';
+
 
 
 const Header = styled.h1`
@@ -166,6 +168,7 @@ export default function SignupForm() {
                         } 
                       </Button>
                     </div>
+                    <Login />
                   </Form>
                 )
             }}
