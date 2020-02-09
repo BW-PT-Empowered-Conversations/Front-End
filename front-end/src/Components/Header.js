@@ -9,7 +9,7 @@ const Nav = styled.div`
 `;
 
 const H2 = styled.h2`
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     text-shadow: 1px 1px 1px white;
     color: green;
 `;
@@ -17,6 +17,7 @@ const H2 = styled.h2`
 const A = styled.a`
     color: white;
     padding-top: 2.5%;
+    margin: 5px;
     margin-bottom: 0px;
     text-decoration: none;
 `;
@@ -38,6 +39,7 @@ export default function Header() {
             <H2>Empowered Conversations</H2>
             <A href='/'>Home</A>
             <A href='/signup'>Sign Up</A>
+            <A href='/dashboard'>Dashboard</A>
             <A href='/new-conversation'>New Conversation</A>
             <Login><A href='/'>Login</A></Login>
         </Nav>

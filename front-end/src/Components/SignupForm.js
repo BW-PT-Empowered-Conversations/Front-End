@@ -63,8 +63,8 @@ const validate = ({ username, password, email, user_phone, first_name, last_name
 
   if (!last_name) {
     errors.last_name = 'Last name required.'
-  } else if (last_name.length < 2) {
-    errors.last_name = 'Last name minimum 2 characters.'
+  } else if (last_name.length < 1) {
+    errors.last_name = 'Last name minimum 1 character.'
   }
 
   if (!checkbox) {
