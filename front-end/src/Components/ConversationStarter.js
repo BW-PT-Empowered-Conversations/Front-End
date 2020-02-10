@@ -3,12 +3,10 @@ import { Formik, Form, Field } from 'formik'; // , ErrorMessage
 import axios from 'axios';
 import '../App.css';
 import styled from 'styled-components';
+import Header from './Header';
+import MessageList from './MessageList';
 
 
-const Header = styled.h1`
-  margin-top: -90px;
-  margin-bottom: 10%;
-`;
 
 const WrapperDiv = styled.div`
   margin: auto;
@@ -53,7 +51,10 @@ export default function ConversationStarter() {
   }
   // <div>{data}</div>
   return (
-      <WrapperDiv className='ConversationStarter'>
+    <div className='ConversationStarter'>
+      <Header />
+      <WrapperDiv>
+        <MessageList />
         <Formik
           onSubmit={handleSubmit}
          // validate={validate}
@@ -63,7 +64,6 @@ export default function ConversationStarter() {
             return (
               <Form>
                 <div>
-                  <Header>Empowered Conversations</Header>
                   <h3>Vulnerability is strength.</h3>
                   <h3>Honesty is powerful!</h3>
                   <h4>Write the words you really want to say.</h4>
@@ -84,8 +84,9 @@ export default function ConversationStarter() {
           }}
         />
       </WrapperDiv>
-    );
-  }
+    </div>
+  );
+}
 
 
 

@@ -3,15 +3,9 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import axios from 'axios';
 import Popup from 'reactjs-popup';
 import '../App.css';
-import Login from './Login'
+import Header from './Header';
 import styled from 'styled-components';
 
-
-
-const Header = styled.h1`
-  margin-top: -90px;
-  margin-bottom: 10%;
-`;
 
 const WrapperDiv = styled.div`
   margin: auto;
@@ -69,8 +63,8 @@ const validate = ({ username, password, email, user_phone, first_name, last_name
 
   if (!last_name) {
     errors.last_name = 'Last name required.'
-  } else if (last_name.length < 2) {
-    errors.last_name = 'Last name minimum 2 characters.'
+  } else if (last_name.length < 1) {
+    errors.last_name = 'Last name minimum 1 character.'
   }
 
   if (!checkbox) {
@@ -98,81 +92,84 @@ export default function SignupForm() {
       })
   }
     return (
-      <WrapperDiv className='SignupForm'>
-        <div>{message}</div>
-      
-        <Formik 
-            onSubmit={handleSubmit} 
-            validate={validate}
-            initialValues={{ username: '', password: '', first_name: '', last_name: '', user_phone: '', email: '', checkbox: '' }}
-            render={props => {
-                console.log(props);
-                return (
-                  <Form>
-                    <div>
-                      <Header>Empowered Conversations</Header>
-                      <h2>Sign Up!</h2>
-                    </div>
-                    <Box>
-                      <Field name='username' type='text' placeholder='username' />
-                      <ErrorMessage name='username' component='div' className='red' />
-                    </Box>
-                    <Box>
-                      <Field name='password' type='password' placeholder='password' />
-                      <ErrorMessage name='password' component='div' className='red' />
-                    </Box>
-                    <Box>
-                      <Field name='email' type='email' placeholder='email' />
-                      <ErrorMessage name='email' component='div' className='red' />
-                    </Box>
-                    <Box>
-                      <Field name='user_phone' type='tel' placeholder='Phone' />
-                      <ErrorMessage name='user_phone' component='div' className='red' />
-                    </Box>
-                    <Box>
-                      <Field name='first_name' type='text' placeholder='First Name' />
-                      <ErrorMessage name='first_name' component='div' className='red' />
-                    </Box>
-                    <Box>
-                      <Field name='last_name' type='text' placeholder='Last Name' />
-                      <ErrorMessage name='last_name' component='div' className='red' />                  
-                    </Box>
-                    <div>
-                      <label>
-                        <Field name='checkbox' type='checkbox' checked={props.checked} />
-                        <ErrorMessage name='checkbox' component='div' className='red' />
-                        <Popup    //modal
-                            trigger={<button className="TOS"> Accept Terms of Service </button>}
-                            position='bottom right'
-                            closeOnDocumentClick
-                        >
-                            <span> CONDITIONS OF USE
-                              Welcome to our website/app. Empowered Conversation and its associates provide
-                              their services to you subject to the following conditions. If you visit
-                              this website, you accept these conditions. Please read them carefully.
-                              ELECTRONIC COMMUNICATIONS
-                              When you visit Empowered Conversation or send e-mails to us, you are
-                              communicating with us electronically. You consent to receive communications from
-                              us electronically. We will communicate with you by e-mail or by posting notices on
-                              this site. You agree that all agreements, notices, disclosures and other
-                              communications that we provide to you electronically satisfy any legal requirement
-                              that such communications be in writing.
-                            </span>
-                        </Popup>
-                      </label>
-                    </div>
-                    <div>
-                      <Button className='button' type='submit' disabled={props.isSubmitting}>
-                        {
-                          props.isSubmitting ? '...SUBMITTING' : 'Submit'
-                        } 
-                      </Button>
-                    </div>
-                    <Login />
-                  </Form>
-                )
-            }}
-        />
-      </WrapperDiv>
+      <div className='SignupForm'>
+        <Header />
+        <WrapperDiv>
+          <div>{message}</div>
+        
+          <Formik 
+              onSubmit={handleSubmit} 
+              validate={validate}
+              initialValues={{ username: '', password: '', first_name: '', last_name: '', user_phone: '', email: '', checkbox: '' }}
+              render={props => {
+                  console.log(props);
+                  return (
+                    <Form>
+                      <div>
+                        <h2>Sign Up!</h2>
+                      </div>
+                      <Box>
+                        <Field name='username' type='text' placeholder='username' />
+                        <ErrorMessage name='username' component='div' className='red' />
+                      </Box>
+                      <Box>
+                        <Field name='password' type='password' placeholder='password' />
+                        <ErrorMessage name='password' component='div' className='red' />
+                      </Box>
+                      <Box>
+                        <Field name='email' type='email' placeholder='email' />
+                        <ErrorMessage name='email' component='div' className='red' />
+                      </Box>
+                      <Box>
+                        <Field name='user_phone' type='tel' placeholder='Phone' />
+                        <ErrorMessage name='user_phone' component='div' className='red' />
+                      </Box>
+                      <Box>
+                        <Field name='first_name' type='text' placeholder='First Name' />
+                        <ErrorMessage name='first_name' component='div' className='red' />
+                      </Box>
+                      <Box>
+                        <Field name='last_name' type='text' placeholder='Last Name' />
+                        <ErrorMessage name='last_name' component='div' className='red' />                  
+                      </Box>
+                      <div>
+                        <label>
+                          <Field name='checkbox' type='checkbox' checked={props.checked} />
+                          <ErrorMessage name='checkbox' component='div' className='red' />
+                          <Popup    //modal
+                              trigger={<button className="TOS"> Accept Terms of Service </button>}
+                              position='bottom right'
+                              closeOnDocumentClick
+                          >
+                              <span> CONDITIONS OF USE
+                                Welcome to our website/app. Empowered Conversation and its associates provide
+                                their services to you subject to the following conditions. If you visit
+                                this website, you accept these conditions. Please read them carefully.
+                                ELECTRONIC COMMUNICATIONS
+                                When you visit Empowered Conversation or send e-mails to us, you are
+                                communicating with us electronically. You consent to receive communications from
+                                us electronically. We will communicate with you by e-mail or by posting notices on
+                                this site. You agree that all agreements, notices, disclosures and other
+                                communications that we provide to you electronically satisfy any legal requirement
+                                that such communications be in writing.
+                              </span>
+                          </Popup>
+                        </label>
+                      </div>
+                      <div>
+                        <Button className='button' type='submit' disabled={props.isSubmitting}>
+                          {
+                            props.isSubmitting ? '...SUBMITTING' : 'Submit'
+                          } 
+                        </Button>
+                      </div>
+                      
+                    </Form>
+                    
+                  )
+              }}
+          />
+        </WrapperDiv>
+      </div>
     );
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import HomePage from './Components/HomePage'
 import SignupForm from './Components/SignupForm'
+import UserDashboard from './Components/UserDashboard'
 import ConversationStarter from './Components/ConversationStarter'
 
 
@@ -14,6 +15,7 @@ function App() {
     <Switch>
       <Route exact path="/" component={HomePage} />
       <Route path="/signup" component={SignupForm} />
+      <Route path="/dashboard" component={UserDashboard} />
       <Route path="/new-conversation" component={ConversationStarter} />
     </Switch>  
   )

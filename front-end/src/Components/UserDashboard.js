@@ -1,6 +1,30 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import axios from 'axios';
+import Header from './Header';
+import ConversationList from './ConversationList';
+import styled from 'styled-components';
+
+const WrapperDiv = styled.div`
+  margin: auto;
+  padding: 15%;
+  color: #0f4c81;
+  text-align: center;
+`;
+
+const Box = styled.div`
+  margin: 2%;
+`;
+
+const Button = styled.button`
+  margin: 5%;
+  width: 100px;
+  height: 30px;
+  background: #B0AE99;
+  border: solid #c7c5ad 1px;
+  border-radius: 8px;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+`;
 
 const validate = ({ recipient_first_name, recipient_last_name, recipient_phone, topic }) => {
   const errors = {};
@@ -50,8 +74,11 @@ export default function ConversationStarter() {
     })
   }
   return (
-      <div className='ConversationStarter'>
+    <div className='UserDashboard'>
+      <Header />
+      <WrapperDiv>
         <div>{message}</div>
+        
 
         <Formik
           onSubmit={handleSubmit}
@@ -63,35 +90,43 @@ export default function ConversationStarter() {
               <Form>
                 <div>
                   <h1>User Dashboard</h1>
-                  <h2>Start the conversation!</h2>
+                  <ConversationList />  
+                  <h2>Start new conversation!</h2>
                 </div>
                 <div>
                   <label htmlFor='to'>To: </label>
-                  <Field name='recipient_first_name' type='text' placeholder='Recipient First Name' />
-                  <ErrorMessage name='recipient_first_name' component='div' className='red' />
-
-                  <Field name='recipient_last_name' type='text' placeholder='Recipient Last Name' />
-                  <ErrorMessage name='recipient_last_name' component='div' className='red' />
-
-                  <Field name='recipient_phone' type='tel' placeholder='Recipient Phone Number' />
-                  <ErrorMessage name='recipient_phone' component='div' className='red' />
+                  <Box>
+                    <Field name='recipient_first_name' type='text' placeholder='Recipient First Name' />
+                    <ErrorMessage name='recipient_first_name' component='div' className='red' />
+                  </Box>
+                  <Box>
+                    <Field name='recipient_last_name' type='text' placeholder='Recipient Last Name' />
+                    <ErrorMessage name='recipient_last_name' component='div' className='red' />
+                  </Box>
+                  <Box>
+                    <Field name='recipient_phone' type='tel' placeholder='Recipient Phone Number' />
+                    <ErrorMessage name='recipient_phone' component='div' className='red' />
+                  </Box>
                 </div>
                 <div>
                   <label htmlFor='topic'>Topic: </label>
-                  <Field name='topic' type='text' placeholder='Title' />
-                  <ErrorMessage name='topic' component='div' className='red' />
+                  <Box>
+                    <Field name='topic' type='text' placeholder='Title' />
+                    <ErrorMessage name='topic' component='div' className='red' />
+                  </Box>
                 </div>
                 
 
-                <button className='button' type='submit' disabled={props.isSubmitting}>
+                <Button className='button' type='submit' disabled={props.isSubmitting}>
                   {
                     props.isSubmitting ? '...Creating' : 'Create'
                   }
-                </button>
+                </Button>
               </Form>
             )
           }}
         />
-      </div>
-    );
-  }
+      </WrapperDiv>
+    </div>
+  );
+}
