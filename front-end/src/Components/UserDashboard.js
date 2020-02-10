@@ -59,9 +59,14 @@ const validate = ({ recipient_first_name, recipient_last_name, recipient_phone, 
 export default function ConversationStarter() {
 
   const [message, setMessage] = useState('');
+  const token = localStorage.getItem('token');
 
   const handleSubmit = (values, tools) => {
-    axios.post('https://bw-emp.herokuapp.com/api/user', values)
+    axios.post('https://bw-emp.herokuapp.com/api/user/1', values, {
+      headers: {
+        'Authorization': `${token}`
+      }
+    })
     .then(response => {
       setMessage(response.data.message);
       tools.resetForm();
@@ -73,6 +78,7 @@ export default function ConversationStarter() {
       tools.setSubmitting(false);
     })
   }
+
   return (
     <div className='UserDashboard'>
       <Header />
@@ -85,7 +91,7 @@ export default function ConversationStarter() {
           validate={validate}
           initialValues={{ recipient_first_name: '', recipient_last_name: '', recipient_phone: '', topic: '' }}
           render={props => {
-            console.log(props);
+            //console.log(props);
             return (
               <Form>
                 <div>

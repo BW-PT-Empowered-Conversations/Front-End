@@ -4,10 +4,15 @@ import axios from 'axios';
 export default function MessageList() {
 
     const [messages, setMessages] = useState([]);
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
         axios
-        .get('https://bw-emp.herokuapp.com/api/user/:user_id/:conversation_id/messages')
+        .get('https://bw-emp.herokuapp.com/api/user/1/1/messages', {
+            headers: {
+              'Authorization': `${token}`
+            }
+          })
         .then(response => {
             console.log(response.data);
             setMessages(response.data);
@@ -20,7 +25,7 @@ export default function MessageList() {
     return (
         <div className='messages'>
             <ul>
-                {messages.map(message => <li>{message}</li>)}
+                {messages.map(message => <li>{message.message}</li>)}
             </ul>
         </div>
     )

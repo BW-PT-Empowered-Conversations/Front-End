@@ -6,8 +6,8 @@ const Card = styled.div`
   flex-direction: column; 
 `;
 
-export default function ConversationCard(props) {
-
+const ConversationCard = props => {
+    console.log(props)
     return (
         <Card>
             <p>Recipient: {props.recipient_first_name}</p>

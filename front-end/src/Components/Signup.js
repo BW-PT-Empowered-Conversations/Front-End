@@ -4,14 +4,14 @@ import { Button } from "reactstrap";
 import { connect } from "react-redux"
 import {useHistory} from 'react-router-dom';
 
-const buttonStyle = {
-  color: "white",
-  background: "green",
-  width: "200px",
-  margin: "10px auto",
-  borderRadius: "10px",
-  boxShadow: "4px 4px 7px #888888"
-};
+// const buttonStyle = {
+//   color: "white",
+//   background: "green",
+//   width: "200px",
+//   margin: "10px auto",
+//   borderRadius: "10px",
+//   boxShadow: "4px 4px 7px #888888"
+// };
 
 const DivStyle = styled.div`
   margin: 10px auto;
@@ -36,21 +36,21 @@ const HeaderStyle = styled.h2`
 
 function Registration(props) {
   const history=useHistory()
-  const [form, setForm] = React.useState({
-    username: "",
-    password: ""
-  });
+  //const [form, setForm] = React.useState({
+  //   username: "",
+  //   password: ""
+  // });
 
-  const registration = e => {
-    e.preventDefault();
-    props.login(form);
-    props.signin(form);
-    props.getUser(props.userInfo.id);
-  };
+  // const registration = e => {
+  //   e.preventDefault();
+  //   props.login(form);
+  //   props.signin(form);
+  //   props.getUser(props.userInfo.id);
+  // };
 
-  const handleChanges = e => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  // const handleChanges = e => {
+  //   setForm({ ...form, [e.target.name]: e.target.value });
+  // };
   
   // //const handleSubmit = (values, tools) => {
   //   //axios.post('https://bw-emp.herokuapp.com/api/login', values)

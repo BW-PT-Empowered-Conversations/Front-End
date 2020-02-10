@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import Signup from "./Signup";
 import { connect } from "react-redux";
@@ -12,7 +12,6 @@ function HomePage(props) {
         // <Dashboard />
         <div className="dashboard">
           <h1>HOME</h1>
-          <empowered-conversation />
           <empowered-conversation />
         </div>
       ) : (

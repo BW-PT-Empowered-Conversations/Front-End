@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Button } from "reactstrap";
 import { connect } from "react-redux";
@@ -44,7 +44,7 @@ function Login(props) {
       alert("Longer username needed");
     }
   };
-  const [userError, setUserError] = useState();
+ // const [userError, setUserError] = useState();
 
   const login = e => {
     validateForm();

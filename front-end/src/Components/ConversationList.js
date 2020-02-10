@@ -1,30 +1,24 @@
-import React, { useState, useEffect} from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+
+import { fetchMessages } from '../actions/messageActions'
 import ConversationCard from './ConversationList';
 
-export default function ConversationList() {
-
-    const [conversations, setConversations] = useState([]);
-
+const ConversationList = (props) => {
     useEffect(() => {
-        axios
-        .get('https://bw-emp.herokuapp.com/api/user/:user_id')
-        .then(response => {
-            console.log(response.data);
-            setConversations(response.data);
-        })
-        .catch(err => {
-            console.log(err);
-        });
-    }, []);
+        fetchMessages();
+    }, [props]);
         
     return (
         <div className='conversations'>
             <h2>Conversations</h2>
-            
-                {conversations.map(conversation => ( 
-                    <ConversationCard key={conversation.id} name={conversation.recipient_first_name} value={conversation.topic} />))}
-            
+            <div>{props.messages && props.messages.map(message => <ConversationCard key={message.id} {...message} />)}</div>
         </div>
-    )
-}
+    );
+};
+
+const mapStateToProps = ({ messageReducer }) => ({
+    messages: messageReducer.messages
+});
+
+export default connect(mapStateToProps, { fetchMessages })(ConversationList);
