@@ -10,11 +10,12 @@ const DivStyle = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: 4px 4px 7px #888888;
+  
 `;
 
 const buttonStyle = {
-  color: "white",
-  background: "black",
+  color: "black",
+  background: "light gray ",
   width: "200px",
   margin: "10px auto",
   borderRadius: "10px",

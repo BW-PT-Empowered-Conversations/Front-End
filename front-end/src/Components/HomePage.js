@@ -5,8 +5,7 @@ import { connect } from "react-redux";
 import Login from "./Login";
 
 function HomePage(props) {
-
- return (
+  return (
     <div>
       {props.isLoggedIn ? (
         // <Dashboard />
@@ -16,9 +15,7 @@ function HomePage(props) {
         </div>
       ) : (
         <div className="login-signup">
-          <StyledHeader>
-            Start Talking Today!
-          </StyledHeader>
+          <StyledHeader>Start Talking Today!</StyledHeader>
           <StyledP>Returning user?</StyledP>
           <Login />
           <StyledP>Get started!</StyledP>
@@ -38,7 +35,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-//  setLoggedIn
+  //  setLoggedIn
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
@@ -51,6 +48,9 @@ const StyledP = styled.p`
 
 const StyledHeader = styled.h2`
   color: Black;
+  background-color: #7ee8fa;
+  background-image: linear-gradient(315deg, #7ee8fa 0%, #80ff72 74%);
+
   font-size: 2.5rem;
   text-align: center;
   border-bottom: 1px solid black;
