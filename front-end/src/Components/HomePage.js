@@ -44,15 +44,17 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
 
 const StyledP = styled.p`
-  color: green;
+  color: Black;
   font-size: 1.5rem;
+  text-align: center;
 `;
 
 const StyledHeader = styled.h2`
-  color: green;
+  color: Black;
   font-size: 2.5rem;
-  border-bottom: 1px solid green;
-  border-top: 1px solid green;
+  text-align: center;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
   padding: 20px;
   margin-top: -10px;
 `;

@@ -20,6 +20,7 @@ const DivStyle = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: 5px 5px 8px #888888;
+  
 `;
 
 const FormDiv = styled.div`
@@ -30,7 +31,8 @@ const FormDiv = styled.div`
 `;
 
 const HeaderStyle = styled.h2`
-  color: green;
+  color: Black;
+  text-align: center;
 `;
 
 
