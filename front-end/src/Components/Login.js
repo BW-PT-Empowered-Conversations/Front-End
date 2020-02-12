@@ -7,15 +7,16 @@ import axios from "axios";
 
 const DivStyle = styled.div`
   margin: 10px auto;
-  width: 450px;
+   width: 450px;
   display: flex;
   flex-direction: column;
   box-shadow: 4px 4px 7px #888888;
+  
 `;
 
 const buttonStyle = {
-  color: "white",
-  background: "green",
+  color: "black",
+  background: "light gray ",
   width: "200px",
   margin: "10px auto",
   borderRadius: "10px",
@@ -30,7 +31,8 @@ const FormDiv = styled.div`
 `;
 
 const HeaderStyle = styled.h2`
-  color: red;
+  color: black;
+  text-align: center;
 `;
 
 function Login(props) {
@@ -81,6 +83,7 @@ function Login(props) {
       <DivStyle>
         <FormDiv>
           <HeaderStyle>Log In</HeaderStyle>
+          
 
           <form onSubmit={login}>
             {" "}
