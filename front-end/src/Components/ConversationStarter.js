@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { axiosWithAuth as axios} from '../utils/axiosConfig';
 import { Formik, Form, Field } from 'formik';
-import * as yup from 'yup';
+//import * as yup from 'yup';
 
 import '../App.css';
 import styled from 'styled-components';
@@ -32,17 +32,16 @@ export default function ConversationStarter(props) {
 
   const [message, setMessage] = useState('');
   const token = localStorage.getItem('token');
+  const id = localStorage.getItem('id');
+  const conversation_id = localStorage.getItem('conversation_id');
 
   const handleSubmit = (values, tools) => {
-    axios.post('https://bw-emp.herokuapp.com/api/user/1/1/message', 
-    values, {
-      headers: {
-        'Authorization': `${token}`
-      }
-    })
+    axios().post(`https://bw-emp.herokuapp.com/api/user/${id}/${conversation_id}/message`, 
+    values)
     .then(response => {
       setMessage(response.data.message);
       tools.resetForm();
+      localStorage.setItem('conversation_id',response.data[0])
     })
     .catch(err => {
       console.log(err);
@@ -56,21 +55,19 @@ export default function ConversationStarter(props) {
     <div className='ConversationStarter'>
     <Header />
     <WrapperDiv>
+            <div>
+                <h3>Vulnerability is strength.</h3>
+                <h3>Honesty is powerful!</h3>
+                <h4>Write the words you really want to say.</h4>
+              </div>
       <MessageList />
       <Formik
         onSubmit={handleSubmit}
        // validate={validate}
         initialValues={{ message: '' }}
         render={props => {
-          console.log(props);
           return (
             <Form>
-              <div>
-                <h3>Vulnerability is strength.</h3>
-                <h3>Honesty is powerful!</h3>
-                <h4>Write the words you really want to say.</h4>
-              </div>
-              
               <MessageBox className='messageBox'>
                 <label htmlFor='message'>Message: </label>
                 <Field name='message' as='textarea' placeholder='Enter message' required/>

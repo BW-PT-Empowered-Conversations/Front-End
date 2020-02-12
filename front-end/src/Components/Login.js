@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Button } from "reactstrap";
 import { connect } from "react-redux";
+import {Link} from 'react-router-dom'
 import axios from "axios";
 
 const DivStyle = styled.div`
@@ -33,6 +34,7 @@ const HeaderStyle = styled.h2`
 `;
 
 function Login(props) {
+  console.log(props)
   const [form, setForm] = React.useState({
     //sets state of the form to empty fields
     username: "", //user name is Nil
@@ -60,6 +62,7 @@ function Login(props) {
           username: "",
           password: ""
         });
+        props.history.push('/dashboard')
       })
       .catch()
       .finally(() => {
@@ -74,6 +77,7 @@ function Login(props) {
 
   return (
     <div textAlign="center">
+      <Link to="/signup">Sign up</Link>
       <DivStyle>
         <FormDiv>
           <HeaderStyle>Log In</HeaderStyle>

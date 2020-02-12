@@ -11,7 +11,7 @@ const ConversationList = (props) => {
         
     return (
         <div className='conversations'>
-            <h2>Conversations</h2>
+            <h2>Conversation List</h2>
             <div>{props.messages && props.messages.map(message => <ConversationCard key={message.id} {...message} />)}</div>
         </div>
     );

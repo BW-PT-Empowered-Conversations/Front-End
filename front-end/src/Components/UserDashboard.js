@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import axios from 'axios';
+import { axiosWithAuth as axios} from '../utils/axiosConfig';
 import Header from './Header';
 import ConversationList from './ConversationList';
 import styled from 'styled-components';
@@ -56,25 +56,29 @@ const validate = ({ recipient_first_name, recipient_last_name, recipient_phone, 
   return errors;
 }
 
-export default function ConversationStarter() {
-
+export default function ConversationStarter(props) {
+console.log(props)
   const [message, setMessage] = useState('');
-  const token = localStorage.getItem('token');
+  const id = localStorage.getItem('id');
+  const conversation_id = localStorage.getItem('conversation_id');
+  //(localStorage.setItem('conversation_id',response.data[0]))
 
   const handleSubmit = (values, tools) => {
-    axios.post('https://bw-emp.herokuapp.com/api/user/1', values, {
-      headers: {
-        'Authorization': `${token}`
-      }
-    })
+    console.log(values)
+    axios().post(`https://bw-emp.herokuapp.com/api/user/${id}`, values)
     .then(response => {
       setMessage(response.data.message);
       tools.resetForm();
+      console.log(response);
+      localStorage.setItem('conversation_id',response.data[0])
+      // props.history.push(`user/${id}/${conversation_id}/messages`)
     })
+    .then(props.history.push(`/new-conversation`))
     .catch(err => {
       console.log(err);
     })
     .finally(() => {
+      console.log("finally block")
       tools.setSubmitting(false);
     })
   }
@@ -83,8 +87,7 @@ export default function ConversationStarter() {
     <div className='UserDashboard'>
       <Header />
       <WrapperDiv>
-        <div>{message}</div>
-        
+        <div>{message}</div>    
 
         <Formik
           onSubmit={handleSubmit}

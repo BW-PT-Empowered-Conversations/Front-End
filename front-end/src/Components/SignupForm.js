@@ -74,13 +74,14 @@ const validate = ({ username, password, email, user_phone, first_name, last_name
   return errors;
 }
 
-export default function SignupForm() {
+export default function SignupForm(props) {
 
   const [message, setMessage] = useState('');
 
   const handleSubmit = (values, tools) => {
     axios.post('https://bw-emp.herokuapp.com/api/register', values)
       .then(response => {
+        localStorage.setItem("token", response.data.token);
         setMessage(response.data.message);
         tools.resetForm();
       })
@@ -90,6 +91,7 @@ export default function SignupForm() {
       .finally(() => {
         tools.setSubmitting(false);
       })
+      props.history.push('./dashboard')
   }
     return (
       <div className='SignupForm'>

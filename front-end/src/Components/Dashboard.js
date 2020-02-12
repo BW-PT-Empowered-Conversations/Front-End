@@ -1,5 +1,4 @@
 import React from 'react';
-import history from './history';
 
 function Dashboard(props) {
     console.log(props);
